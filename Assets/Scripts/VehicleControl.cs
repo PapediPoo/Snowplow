@@ -17,6 +17,7 @@ public class VehicleControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: Split wheel meshes into individual wheels and use point speed of RB to estimate rotation speed
         transform.position += transform.forward * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
         transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed * Input.GetAxis("Horizontal"));
     }
