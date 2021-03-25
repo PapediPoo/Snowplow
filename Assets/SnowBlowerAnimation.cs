@@ -6,6 +6,7 @@ public class SnowBlowerAnimation : MonoBehaviour
 {
 
     private SnowBlowerController sbc;
+    private Rigidbody rb;
 
     [Header("Chute")]
     public GameObject chute;
@@ -26,6 +27,7 @@ public class SnowBlowerAnimation : MonoBehaviour
     void Start()
     {
         sbc = GetComponent<SnowBlowerController>();
+        rb = GetComponent<Rigidbody>();
         if (chute) chuteInitRot = chute.transform.localRotation;
     }
 
@@ -46,7 +48,9 @@ public class SnowBlowerAnimation : MonoBehaviour
 
         foreach(GameObject w in wheels)
         {
-            w.transform.Rotate(Vector3.right * wheelRotSpeed * sbc.GetWheelDrive() * Time.deltaTime, Space.Self);
+            float v = Vector3.Dot(transform.forward, rb.GetPointVelocity(w.transform.position));
+
+            w.transform.Rotate(Vector3.right * wheelRotSpeed * v * Time.deltaTime, Space.Self);
         }
     }
 }
