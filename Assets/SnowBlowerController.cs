@@ -77,7 +77,7 @@ public class SnowBlowerController : MonoBehaviour
 
 
         Drive(engineThrottle * driveClutch, controlLeverL, controlLeverR);
-        snowArea.ClearArea(augerCollider, 13 * Time.fixedDeltaTime);
+        // snowArea.ClearArea(augerCollider, 13 * Time.fixedDeltaTime);
         // Collect(engineThrottle * augerClutch);
     }
 
