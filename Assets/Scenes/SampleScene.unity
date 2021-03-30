@@ -568,7 +568,7 @@ MonoBehaviour:
   chute: {fileID: 1632929385}
   chutePichtAmp: 100
   chuteYawAmp: 50
-  auger: {fileID: 1093188678}
+  auger: {fileID: 166564517}
   augerRotSpeed: 180
   wheels:
   - {fileID: 556749454}
@@ -784,8 +784,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188225530}
-  m_LocalRotation: {x: -0.007993559, y: 0.0000000046412985, z: 3.710159e-11, w: 0.9999681}
-  m_LocalPosition: {x: 0, y: -0.733758, z: 0.3534248}
+  m_LocalRotation: {x: -0.10955681, y: 0.000000022482135, z: 0.0000000024779867, w: 0.9939806}
+  m_LocalPosition: {x: 0, y: -1.3040669, z: 0.96210885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2091831699}
