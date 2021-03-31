@@ -44,7 +44,19 @@ public class SnowBlowerController : MonoBehaviour
     [Header("Clearing and Throwing")]
     public float clearingCapacity = 14;
     public SnowArea snowArea;
-    public Collider augerCollider;
+    public Transform augerTransform;
+    public int augerKernelSize = 5;
+    [Range(0, 1)]
+    public float chuteLoss = .5f;
+    public float augerKernelWeight = 2;
+    private float[,] augerKernel;
+
+    public int chuteKernelSize = 5;
+    public float chuteKernelWeight = 3f;
+    private float[,] chuteKernel;
+
+    public Transform chuteTransform;
+    public Vector3 chuteTarget;
 
     [Header("Inputs")]
     public float controlSmoothing = 0.2f;
@@ -56,6 +68,8 @@ public class SnowBlowerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = transform.position + (transform.rotation * centerOfMass);
         currentSpeed = 0f;
+        augerKernel = Utils.GaussianKernel(augerKernelSize, augerKernelWeight);
+        chuteKernel = Utils.GaussianKernel(chuteKernelSize, chuteKernelWeight);
     }
 
     private void Update()
@@ -77,7 +91,9 @@ public class SnowBlowerController : MonoBehaviour
 
 
         Drive(engineThrottle * driveClutch, controlLeverL, controlLeverR);
-        // snowArea.ClearArea(augerCollider, 13 * Time.fixedDeltaTime);
+        // snowArea.ClearArea(augerCollider, clearingCapacity * Time.fixedDeltaTime);
+        float volume = snowArea.ClearArea(augerTransform.position, augerKernel, clearingCapacity * Time.fixedDeltaTime, ClearingMode.Subtract);
+        snowArea.ClearArea(chuteTransform.position + chuteTransform.rotation * chuteTarget, chuteKernel, volume * (1f - chuteLoss), ClearingMode.Add);
         // Collect(engineThrottle * augerClutch);
     }
 
@@ -101,6 +117,11 @@ public class SnowBlowerController : MonoBehaviour
     float Collect(float shaftSpeed)
     {
         return 0f;
+    }
+
+    public void Throw(Vector3 position, float amount)
+    {
+
     }
 
     void ToggleDriveClutch()
@@ -132,5 +153,11 @@ public class SnowBlowerController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position + transform.rotation * centerOfMass, .1f);
+
+        if(chuteTransform != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(chuteTransform.position + chuteTransform.rotation * chuteTarget, .1f);
+        }
     }
 }
