@@ -8,6 +8,11 @@ public class SnowBlowerAnimation : MonoBehaviour
     private SnowBlowerController sbc;
     private Rigidbody rb;
 
+    public ParticleSystem chuteParticles;
+    public ParticleSystem augerParticles;
+    private float chuteParticlesInitRate;
+    private float augerParticlesInitRate;
+
     [Header("Chute")]
     public GameObject chute;
     public float chutePichtAmp = 100f;
@@ -29,6 +34,18 @@ public class SnowBlowerAnimation : MonoBehaviour
         sbc = GetComponent<SnowBlowerController>();
         rb = GetComponent<Rigidbody>();
         if (chute) chuteInitRot = chute.transform.localRotation;
+
+        if (chuteParticles)
+        {
+            var em = chuteParticles.emission;
+            chuteParticlesInitRate = em.rateOverTimeMultiplier;
+        }
+
+        if (augerParticles)
+        {
+            var em = augerParticles.emission;
+            augerParticlesInitRate = em.rateOverTimeMultiplier;
+        }
     }
 
     // Update is called once per frame
@@ -39,11 +56,27 @@ public class SnowBlowerAnimation : MonoBehaviour
             auger.transform.Rotate(Vector3.right * augerRotSpeed * sbc.GetAugerDrive() * Time.deltaTime, Space.Self);
         }
 
+        if (augerParticles)
+        {
+            var em = augerParticles.emission;
+            // em.rateOverTimeMultiplier = sbc.GetSnowResistance() * augerParticlesInitRate;
+            var m = augerParticles.main;
+            m.startSize = sbc.GetSnowResistance() * 2f;
+        }
+
         if (chute)
         {
             Vector2 chutestate = sbc.GetChuteRot();
             chute.transform.localRotation = chuteInitRot;
             chute.transform.Rotate(0, chutestate.x * chutePichtAmp, chutestate.y * chuteYawAmp);
+        }
+
+        if (chuteParticles)
+        {
+            var em = chuteParticles.emission;
+            //em.rateOverTimeMultiplier = sbc.GetSnowResistance() * chuteParticlesInitRate;
+            var m = chuteParticles.main;
+            m.startSize = sbc.GetSnowResistance() * 2f;
         }
 
         foreach(GameObject w in wheels)

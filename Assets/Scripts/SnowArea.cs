@@ -11,10 +11,15 @@ public enum ClearingMode
 
 public class SnowArea : MonoBehaviour
 {
+
     [Header("System")]
     public int resolution = 128;
     public Texture2D tex;
     public float initHeight = .5f;
+
+    public float noiseScale = 5f;
+    public float noiseHeight = 0.2f;
+
     public string displacementTextureID;
 
     // Start is called before the first frame update
@@ -25,7 +30,8 @@ public class SnowArea : MonoBehaviour
         // Array.Fill(cols, Color.white); only supported for .net 5+
         for(int i = 0; i < cols.Length; i++)
         {
-            cols[i] = col;
+            //cols[i] = col;
+            cols[i] = new Color(initHeight + Mathf.PerlinNoise(i % resolution / noiseScale, i / resolution / noiseScale) * noiseHeight, 0f, 0f);
         }
 
         tex = new Texture2D(resolution, resolution);
