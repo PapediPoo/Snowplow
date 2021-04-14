@@ -30,113 +30,104 @@ public class UpdateOverlay : MonoBehaviour {
         
         switch (current_state) {
             case states.off:
-                if (Input.GetKeyDown("space")) {
+                if (Input.GetButton("Space")) {
                     current_state = states.starting;
                     Overlay.overrideSprite = start;
                 }
                 break;
 
             case states.starting:
-                if (Input.GetKeyDown("return")) {
+                if (Input.GetButton("Return")) {
                     current_state = states.straight_normal;
                     Overlay.overrideSprite = straight_normal;
                 }
                 break;
 
             case states.straight_normal:
-                if (Input.GetKeyDown("left") || Input.GetKeyDown("a")) {
+                if (Input.GetButton("Left")) {
                     current_state = states.left_normal;
                     Overlay.overrideSprite = left_normal;
                 }
-                else if (Input.GetKeyDown("right") || Input.GetKeyDown("d")) {
+                else if (Input.GetButton("Right")) {
                     current_state = states.right_normal;
                     Overlay.overrideSprite = right_normal;
                 }
-                else if (Input.GetKeyDown("p")) {
+                else if (Input.GetButton("Power")) {
                     current_state = states.straight_turbo;
                     Overlay.overrideSprite = straight_turbo;
                 }
                 break;
 
             case states.left_normal:
-                if (Input.GetKeyDown("right") || Input.GetKeyDown("d")) {
+                if (Input.GetButton("Right")) {
                     current_state = states.right_normal;
                     Overlay.overrideSprite = right_normal;
                 }
-                else if (Input.GetKeyDown("up") || Input.GetKeyDown("w")) {
-                    current_state = states.straight_normal;
-                    Overlay.overrideSprite = straight_normal;
-                }
-                else if (Input.GetKeyDown("p")) {
+                else if (Input.GetButton("Power")) {
                     current_state = states.left_turbo;
                     Overlay.overrideSprite = left_turbo;
+                }
+                else if (!(Input.GetButton("Left"))) {
+                    current_state = states.straight_normal;
+                    Overlay.overrideSprite = straight_normal;
                 }
                 break;
 
             case states.right_normal:
-                if (Input.GetKeyDown("left") || Input.GetKeyDown("a")) {
+                if (Input.GetButton("Left")) {
                     current_state = states.left_normal;
                     Overlay.overrideSprite = left_normal;
                 }
-                else if (Input.GetKeyDown("up") || Input.GetKeyDown("w")) {
-                    current_state = states.straight_normal;
-                    Overlay.overrideSprite = straight_normal;
-                }
-                else if (Input.GetKeyDown("p")) {
+                else if (Input.GetButton("Power")) {
                     current_state = states.right_turbo;
                     Overlay.overrideSprite = right_turbo;
+                }
+                else if (!(Input.GetButton("Right"))) {
+                    current_state = states.straight_normal;
+                    Overlay.overrideSprite = straight_normal;
                 }
                 break;
 
             case states.straight_turbo:
-                if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
-                {
+                if (Input.GetButton("Left")) {
                     current_state = states.left_turbo;
                     Overlay.overrideSprite = left_turbo;
                 }
-                else if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
-                {
+                else if (Input.GetButton("Right")) {
                     current_state = states.right_turbo;
                     Overlay.overrideSprite = right_turbo;
                 }
-                else if (Input.GetKeyDown("p"))
-                {
+                else if (Input.GetButton("Power")) {
                     current_state = states.straight_normal;
                     Overlay.overrideSprite = straight_normal;
                 }
                 break;
 
             case states.left_turbo:
-                if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
-                {
+                if (Input.GetButton("Right")) {
                     current_state = states.right_turbo;
                     Overlay.overrideSprite = right_turbo;
                 }
-                else if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
-                {
+                else if (!(Input.GetButton("Left"))) {
                     current_state = states.straight_turbo;
                     Overlay.overrideSprite = straight_turbo;
                 }
-                else if (Input.GetKeyDown("p"))
-                {
+                else if (Input.GetButton("Power")) {
                     current_state = states.left_normal;
                     Overlay.overrideSprite = left_normal;
                 }
                 break;
 
             case states.right_turbo:
-                if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
-                {
+                if (Input.GetButton("Left")) {
                     current_state = states.left_turbo;
                     Overlay.overrideSprite = left_turbo;
                 }
-                else if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
-                {
+                else if (!(Input.GetButton("Right"))) {
                     current_state = states.straight_turbo;
                     Overlay.overrideSprite = straight_turbo;
                 }
-                else if (Input.GetKeyDown("p"))
-                {
+                else if (Input.GetButton("Power")) {
                     current_state = states.right_normal;
                     Overlay.overrideSprite = right_normal;
                 }

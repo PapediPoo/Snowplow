@@ -20,6 +20,8 @@ public class SnowArea : MonoBehaviour
     public float noiseScale = 5f;
     public float noiseHeight = 0.2f;
 
+    public float distanceClearThreshold = 0.5f;
+
     public string displacementTextureID;
 
     // Start is called before the first frame update
@@ -49,6 +51,9 @@ public class SnowArea : MonoBehaviour
 
     public float ClearArea(Vector3 position, float[,] kernel, float capacity, ClearingMode mode)
     {
+        if (Mathf.Abs(position.y - transform.position.y) > distanceClearThreshold)
+            return 0f;
+
         Vector3 iPosition = PosToIndex(position);
         int rad = (int)Mathf.Sqrt(kernel.Length) / 2;
 
@@ -83,13 +88,6 @@ public class SnowArea : MonoBehaviour
 
         tex.Apply();
         return sum;
-    }
-
-    Vector4 BBoxToIndex(Bounds bbox)
-    {
-        Vector3 v1 = PosToIndex(bbox.center - bbox.extents);
-        Vector3 v2 = PosToIndex(bbox.center + bbox.extents);
-        return new Vector4(v1.x, v1.z, v2.x, v2.z);
     }
 
     Vector3 PosToIndex(Vector3 position)

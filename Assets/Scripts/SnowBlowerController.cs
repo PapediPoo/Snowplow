@@ -32,10 +32,16 @@ public class SnowBlowerController : MonoBehaviour
     [Range(0,1)]
     public float turnStiffness = 0.5f;                  // Controls rotational stiffness
 
+    [SerializeField]
+    private float groundedThreshold = 0.5f;             // max distance to ground so that it still counts as grounded
+
     [Header("Clearing and Throwing")]
     [SerializeField] private float clearingCapacity = 14;   // Indicates how much snow the machine can clear [u^3/s]
     private float volume;
     private float snowResistance;                       // Clearing snow makes you smaller. 0 = no resistance, 1 = full resistance
+    [Range(.1f, 1f)]
+    [SerializeField]
+    private float maxSnowResistance = .5f;
     [Range(0f, .5f)] [SerializeField] private float snowResistanceSmoother = .03f;
     [Range(0, 1)]  public float chuteLoss = .5f;        // Controls how much of the collected snow leaves the chute
     public SnowArea snowArea;                           // Specifies the area to be cleared
@@ -87,24 +93,30 @@ public class SnowBlowerController : MonoBehaviour
 
         Drive(driveClutch, controlLeverL, controlLeverR);
 
-        volume = Collect(augerTransform.position, augerKernel, clearingCapacity * augerClutch);
-        Throw(chuteTransform.position + chuteTransform.rotation * chuteTarget, chuteKernel, volume);
+        if (currentSpeed >= 0f)
+        {
+            volume = Collect(augerTransform.position, augerKernel, clearingCapacity * augerClutch);
+            Throw(chuteTransform.position + chuteTransform.rotation * chuteTarget, chuteKernel, volume);
+        }
 
     }
 
     void Drive(float shaftSpeed, float controlL, float controlR)
     {
 
-        float desiredSpeed = currentSpeed * shaftSpeed * (2f - controlL - controlR) * .5f * (1f - snowResistance);
+        //float desiredSpeed = currentSpeed * shaftSpeed * (2f - controlL - controlR) * .5f;
+        float desiredSpeed = currentSpeed * shaftSpeed * (2f - controlL - controlR) * .5f * (1f - Mathf.Clamp(snowResistance, 0f, maxSnowResistance));
         float actualSpeed = Vector3.Dot(transform.forward, rb.velocity);
 
         float desiredASpeed = Mathf.Atan((controlR - controlL) / track) * shaftSpeed * currentSpeed;
         float actualASpeed = Vector3.Dot(transform.up, rb.angularVelocity);
 
-        rb.AddForce(transform.forward * Mathf.Clamp(desiredSpeed - actualSpeed , reversespeed, maxspeed) * longitudinalStiffness / Time.fixedDeltaTime, ForceMode.Acceleration);
-        rb.AddForce(transform.right * (-Vector3.Dot(transform.right, rb.velocity)) * lateralStiffness / Time.fixedDeltaTime, ForceMode.Acceleration);
-        rb.AddTorque(transform.up * Mathf.Clamp(desiredASpeed - actualASpeed, 2 * reversespeed, 2 * maxspeed) * turnStiffness / Time.fixedDeltaTime, ForceMode.Acceleration);
-
+        if (Physics.Raycast(transform.position + (.1f * transform.up), -transform.up, groundedThreshold + .1f))
+        {
+            rb.AddForce(transform.forward * Mathf.Clamp(desiredSpeed - actualSpeed, reversespeed, maxspeed) * longitudinalStiffness * rb.mass / Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddForce(transform.right * (-Vector3.Dot(transform.right, rb.velocity)) * lateralStiffness * rb.mass / Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddTorque(transform.up * Mathf.Clamp(desiredASpeed - actualASpeed, 2 * reversespeed, 2 * maxspeed) * turnStiffness / Time.fixedDeltaTime, ForceMode.Acceleration);
+        }
     }
 
     float Collect(Vector3 position, float[,] kernel, float capacity)
@@ -165,5 +177,10 @@ public class SnowBlowerController : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(chuteTransform.position + chuteTransform.rotation * chuteTarget, .1f);
         }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position - (groundedThreshold * transform.up));
+
+
     }
 }
