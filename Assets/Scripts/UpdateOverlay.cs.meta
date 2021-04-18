@@ -6,13 +6,35 @@ MonoImporter:
   defaultReferences:
   - Overlay: {instanceID: 0}
   - idle: {fileID: 21300000, guid: 024659382a00c6f4483703073f3a3050, type: 3}
-  - start: {fileID: 21300000, guid: 22dd83dfe6c9a524e8e300f1673503b4, type: 3}
-  - straight_normal: {fileID: 21300000, guid: db4dc04ac08088d499f7178f41af48e4, type: 3}
-  - right_normal: {fileID: 21300000, guid: 1091110f093b3754b923692af4b120d3, type: 3}
-  - left_normal: {fileID: 21300000, guid: 3da5c5495b428ae4682dc77ed4d3db2a, type: 3}
-  - straight_turbo: {fileID: 21300000, guid: 3048fa7fadefc02408f5a545af6efd97, type: 3}
-  - right_turbo: {fileID: 21300000, guid: c998d5e5ec3514740aca5afb3cc2c833, type: 3}
-  - left_turbo: {fileID: 21300000, guid: cbf1b90b2237f5b439525701a56c9d79, type: 3}
+  - straight_normal_normal: {fileID: 21300000, guid: bc8a5684e7a15e6488936bb0e169706d,
+      type: 3}
+  - right_normal_normal: {fileID: 21300000, guid: cd9fbee750888d54d93e17e3af5fc4ff,
+      type: 3}
+  - left_normal_normal: {fileID: 21300000, guid: 9c6b38832193c274d9296a1996b01e36,
+      type: 3}
+  - straight_turbo_normal: {fileID: 21300000, guid: 05abf3dd7993aef4bbe483bdb0190e30,
+      type: 3}
+  - right_turbo_normal: {fileID: 21300000, guid: 9556ac0f3d273304c82774a80e91f862,
+      type: 3}
+  - left_turbo_normal: {fileID: 21300000, guid: 24a0e3c4929c42f4d8d9ab5d590fdf7f,
+      type: 3}
+  - straight_normal_up: {fileID: 21300000, guid: 786ecd81a2a30d140aaf7c43948bbc15,
+      type: 3}
+  - right_normal_up: {fileID: 21300000, guid: 8e45d4e2b76cf2949a0b4aa1e71f300e, type: 3}
+  - left_normal_up: {fileID: 21300000, guid: 4eaa9f94b40175042a30b59aa8fb74e9, type: 3}
+  - straight_turbo_up: {fileID: 21300000, guid: 9211ffe942f404f46a02a0b439a6e215,
+      type: 3}
+  - right_turbo_up: {fileID: 21300000, guid: ddba8253189ac3b45b359377f5c4463f, type: 3}
+  - left_turbo_up: {fileID: 21300000, guid: 5e6cd58e36a78b0438d0ad0d3f38599e, type: 3}
+  - straight_normal_down: {fileID: 21300000, guid: d495a8837c04a6c4eb6780187237ad16,
+      type: 3}
+  - right_normal_down: {fileID: 21300000, guid: ff2c1e541f8d0f64d8acc755a8eb9af9,
+      type: 3}
+  - left_normal_down: {fileID: 21300000, guid: ded68b55281a24140a5fc22b6fc56339, type: 3}
+  - straight_turbo_down: {fileID: 21300000, guid: 53c99e49b630f704abb41c039b4c1874,
+      type: 3}
+  - right_turbo_down: {fileID: 21300000, guid: a99ed90e2ea5eb9488a171a1bc69d80a, type: 3}
+  - left_turbo_down: {fileID: 21300000, guid: 67b9403e4fe9bdf4993053cbf59aba04, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
