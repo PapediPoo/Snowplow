@@ -598,6 +598,21 @@ PrefabInstance:
       propertyPath: snowArea
       value: 
       objectReference: {fileID: 792935076}
+    - target: {fileID: 4444743227124096701, guid: 91e9100e45f542d4f9cc91e843dbde57,
+        type: 3}
+      propertyPath: chuteLoss
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444743227124096701, guid: 91e9100e45f542d4f9cc91e843dbde57,
+        type: 3}
+      propertyPath: shiftTime
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444743227124096701, guid: 91e9100e45f542d4f9cc91e843dbde57,
+        type: 3}
+      propertyPath: shiftSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6216256756309383179, guid: 91e9100e45f542d4f9cc91e843dbde57,
         type: 3}
       propertyPath: m_Name
@@ -843,7 +858,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ff372694785234c418b11ab94c20bc37,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: -0.247
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff372694785234c418b11ab94c20bc37,
         type: 3}
