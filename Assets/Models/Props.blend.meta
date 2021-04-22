@@ -1,37 +1,14 @@
 fileFormatVersion: 2
-guid: fd359c7b03590154280c083d41eb05cf
+guid: a9644bc694f62e74ba95ca68ff7c0620
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Backlight
-    second: {fileID: 8751373155067851511, guid: 327d94d5807504541af0e7fd981bf998,
-      type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Base_Car_color
-    second: {fileID: 5450171525105895273, guid: 28134b1e8e054114899ca677c50d2be1,
-      type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Black
-    second: {fileID: 2100000, guid: 9e25b1aee3e0a8c49b981c3fde1dfc21, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Grey
-    second: {fileID: 4404839247605695133, guid: 1c8c0af4eca2f6b44b349eb15302f52c,
-      type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -111,7 +88,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
