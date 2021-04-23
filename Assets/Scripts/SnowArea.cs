@@ -55,7 +55,7 @@ public class SnowArea : MonoBehaviour
             return 0f;
 
         Vector3 iPosition = PosToIndex(position);
-        int rad = (int)Mathf.Sqrt(kernel.Length) / 2;
+        int rad = (int)Mathf.Sqrt(kernel.Length) / 2 + 1;
 
         float sum = 0f;
         float value;

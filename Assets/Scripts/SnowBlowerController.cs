@@ -59,7 +59,8 @@ public class SnowBlowerController : MonoBehaviour
 
     [Header("Inputs")]
     public float controlSmoothing = 0.2f;
-    public float shiftSpeed = 1f;
+    public float shiftTime = 1f;
+    private float speedRef;
 
     // Start is called before the first frame update
     void Start()
@@ -75,9 +76,11 @@ public class SnowBlowerController : MonoBehaviour
     {
 
         // Reads player input
-        currentSpeed += Input.GetKey("w") ? Time.deltaTime * shiftSpeed : 0;
-        currentSpeed -= Input.GetKey("s") ? Time.deltaTime * shiftSpeed : 0;
-        currentSpeed = Mathf.Clamp(currentSpeed, reversespeed, maxspeed);
+        //currentSpeed += Input.GetKey("w") ? Time.deltaTime * shiftSpeed : 0;
+        //currentSpeed -= Input.GetKey("s") ? Time.deltaTime * shiftSpeed : 0;
+        //currentSpeed = Mathf.Clamp(currentSpeed, reversespeed, maxspeed);
+
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, (Input.GetKey("w") ? maxspeed : 0f) + (Input.GetKey("s") ? reversespeed : 0f), ref speedRef, shiftTime);
 
         controlLeverL = Mathf.Lerp(controlLeverL, Input.GetKey("a") ? 1 : 0, controlSmoothing);
         controlLeverR = Mathf.Lerp(controlLeverR, Input.GetKey("d") ? 1 : 0, controlSmoothing);
