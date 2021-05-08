@@ -19,7 +19,7 @@ public class SnowBlowerController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]  private Vector3 centerOfMass = Vector3.zero;
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     [Header("Driving Characteristics")]
     [SerializeField] private float track = 1f;          // Controls how far apart the tracks should be. Affects the turning radius
@@ -66,7 +66,7 @@ public class SnowBlowerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = transform.position + (transform.rotation * centerOfMass);
+        rb.centerOfMass = centerOfMass;
         currentSpeed = 0f;
         augerKernel = Utils.GaussianKernel(augerKernelSize, augerKernelWeight);
         chuteKernel = Utils.GaussianKernel(chuteKernelSize, chuteKernelWeight);
@@ -85,8 +85,8 @@ public class SnowBlowerController : MonoBehaviour
         controlLeverL = Mathf.Lerp(controlLeverL, Input.GetKey("a") ? 1 : 0, controlSmoothing);
         controlLeverR = Mathf.Lerp(controlLeverR, Input.GetKey("d") ? 1 : 0, controlSmoothing);
 
-        if (Input.GetKeyDown("f")) ToggleDriveClutch();
-        if (Input.GetKeyDown("g")) ToggleAugerClutch();
+        if (Input.GetKeyDown("q")) ToggleDriveClutch();
+        if (Input.GetKeyDown("e")) ToggleAugerClutch();
     }
 
     // Game Logic Loop

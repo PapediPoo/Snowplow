@@ -15,6 +15,8 @@ public class SnowArea : MonoBehaviour
     [Header("System")]
     public int resolution = 128;
     public Texture2D tex;
+    public Texture2D mask;
+    public LayerMask scanmask;
     public float initHeight = .5f;
 
     public float noiseScale = 5f;
@@ -23,6 +25,9 @@ public class SnowArea : MonoBehaviour
     public float distanceClearThreshold = 0.5f;
 
     public string displacementTextureID;
+
+    private float counter;
+    public float updateScoreEvery = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +46,35 @@ public class SnowArea : MonoBehaviour
         tex.Apply();
         //GetComponent<Renderer>().material.mainTexture = tex;
         GetComponent<Renderer>().material.SetTexture(displacementTextureID, tex);
+
+        mask = new Texture2D(resolution, resolution);
+        for(int x = 0; x < resolution; x++)
+        {
+            for(int y = 0; y < resolution; y++)
+            {
+                Collider c = GetComponent<Collider>();
+                Vector3 pos = c.bounds.center - c.bounds.extents + new Vector3(c.bounds.size.x * x / resolution, c.bounds.size.y + 0.6f,c.bounds.size.z * y / resolution);
+                if(Physics.CheckSphere(pos, 0.5f, scanmask)){
+                    mask.SetPixel(x, y, Color.black);
+                }
+                else
+                {
+                    mask.SetPixel(x, y, Color.red);
+                }
+            }
+        }
+        mask.Apply();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        counter += Time.deltaTime;
+        if(counter >= updateScoreEvery)
+        {
+            counter -= updateScoreEvery;
+            print(GetRemainingSnow());
+        }
     }
 
     public float ClearArea(Vector3 position, float[,] kernel, float capacity, ClearingMode mode)
@@ -88,6 +116,19 @@ public class SnowArea : MonoBehaviour
 
         tex.Apply();
         return sum;
+    }
+
+    public float GetRemainingSnow()
+    {
+        float result = 0f;
+        for(int x = 0; x < resolution; x++)
+        {
+            for(int y = 0; y < resolution; y++)
+            {
+                result += tex.GetPixel(x, y).r * mask.GetPixel(x, y).r;
+            }
+        }
+        return result;
     }
 
     Vector3 PosToIndex(Vector3 position)
