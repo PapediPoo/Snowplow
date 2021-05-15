@@ -5,6 +5,8 @@ using UnityEngine;
 public class SnowBlowerController : MonoBehaviour
 {
     [Header("Controls")]
+    public bool useKeyboard = true;
+
     [Range(0, 1)] [SerializeField] private float driveClutch;  // Controls how strongly the engine should drive the driving
 
     [Range(0, 1)] [SerializeField] private float augerClutch;  // Controls how strongly the engine should drive the snow clearing
@@ -80,13 +82,16 @@ public class SnowBlowerController : MonoBehaviour
         //currentSpeed -= Input.GetKey("s") ? Time.deltaTime * shiftSpeed : 0;
         //currentSpeed = Mathf.Clamp(currentSpeed, reversespeed, maxspeed);
 
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, (Input.GetKey("w") ? maxspeed : 0f) + (Input.GetKey("s") ? reversespeed : 0f), ref speedRef, shiftTime);
+        if (useKeyboard)
+        {
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, (Input.GetKey("w") ? maxspeed : 0f) + (Input.GetKey("s") ? reversespeed : 0f), ref speedRef, shiftTime);
 
-        controlLeverL = Mathf.Lerp(controlLeverL, Input.GetKey("a") ? 1 : 0, controlSmoothing);
-        controlLeverR = Mathf.Lerp(controlLeverR, Input.GetKey("d") ? 1 : 0, controlSmoothing);
+            controlLeverL = Mathf.Lerp(controlLeverL, Input.GetKey("a") ? 1 : 0, controlSmoothing);
+            controlLeverR = Mathf.Lerp(controlLeverR, Input.GetKey("d") ? 1 : 0, controlSmoothing);
 
-        if (Input.GetKeyDown("q")) ToggleDriveClutch();
-        if (Input.GetKeyDown("e")) ToggleAugerClutch();
+            if (Input.GetKeyDown("q")) ToggleDriveClutch();
+            if (Input.GetKeyDown("e")) ToggleAugerClutch();
+        }
     }
 
     // Game Logic Loop
@@ -143,6 +148,38 @@ public class SnowBlowerController : MonoBehaviour
     void ToggleAugerClutch()
     {
         augerClutch = 1f - augerClutch;
+    }
+
+    public void SetControlL(float value)
+    {
+        controlLeverL = value;
+    }
+
+    public void SetControlR(float value)
+    {
+        controlLeverR = value;
+    }
+
+    public float GetSpeed()
+    {
+        return currentSpeed;
+    }
+
+    public void SetSpeed(float value)
+    {
+        currentSpeed = Mathf.Clamp(value, reversespeed, maxspeed);
+    }
+
+    public void ShiftSpeed(bool up)
+    {
+        if (up)
+        {
+            currentSpeed = Mathf.Clamp(currentSpeed + shiftTime, reversespeed, maxspeed);
+        }
+        else
+        {
+            currentSpeed = Mathf.Clamp(currentSpeed - shiftTime, reversespeed, maxspeed);
+        }
     }
 
     public float GetAugerDrive()
