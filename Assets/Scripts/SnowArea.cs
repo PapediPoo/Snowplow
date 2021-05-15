@@ -29,6 +29,8 @@ public class SnowArea : MonoBehaviour
     private float counter;
     public float updateScoreEvery = 2f;
 
+    private float initSnow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,8 @@ public class SnowArea : MonoBehaviour
             }
         }
         mask.Apply();
+
+        initSnow = GetRemainingSnow();
     }
 
     // Update is called once per frame
@@ -129,6 +133,11 @@ public class SnowArea : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public float GetInitSnow()
+    {
+        return initSnow;
     }
 
     Vector3 PosToIndex(Vector3 position)

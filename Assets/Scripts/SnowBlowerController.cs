@@ -6,6 +6,7 @@ public class SnowBlowerController : MonoBehaviour
 {
     [Header("Controls")]
     public bool useKeyboard = true;
+    private GameMaster master;
 
     [Range(0, 1)] [SerializeField] private float driveClutch;  // Controls how strongly the engine should drive the driving
 
@@ -25,8 +26,8 @@ public class SnowBlowerController : MonoBehaviour
 
     [Header("Driving Characteristics")]
     [SerializeField] private float track = 1f;          // Controls how far apart the tracks should be. Affects the turning radius
-    [SerializeField] private float maxspeed = 3;        // Controls the maximum forward speed
-    [SerializeField] private float reversespeed = -2f;  // Controls the maximum reverse speed
+    [SerializeField] public readonly float maxspeed = 3;        // Controls the maximum forward speed
+    [SerializeField] public readonly float reversespeed = -2f;  // Controls the maximum reverse speed
     [Range(0, 1)]
     public float lateralStiffness = 0.5f;               // Controls sideways stiffness
     [Range(0,1)]
@@ -72,6 +73,7 @@ public class SnowBlowerController : MonoBehaviour
         currentSpeed = 0f;
         augerKernel = Utils.GaussianKernel(augerKernelSize, augerKernelWeight);
         chuteKernel = Utils.GaussianKernel(chuteKernelSize, chuteKernelWeight);
+        master = FindObjectOfType<GameMaster>();
     }
 
     private void Update()
@@ -81,6 +83,8 @@ public class SnowBlowerController : MonoBehaviour
         //currentSpeed += Input.GetKey("w") ? Time.deltaTime * shiftSpeed : 0;
         //currentSpeed -= Input.GetKey("s") ? Time.deltaTime * shiftSpeed : 0;
         //currentSpeed = Mathf.Clamp(currentSpeed, reversespeed, maxspeed);
+
+        useKeyboard = !master.VRMode;
 
         if (useKeyboard)
         {
@@ -140,12 +144,12 @@ public class SnowBlowerController : MonoBehaviour
         snowArea.ClearArea(chuteTransform.position + chuteTransform.rotation * chuteTarget, kernel, amount * (1f - chuteLoss), ClearingMode.Add);
     }
 
-    void ToggleDriveClutch()
+    public void ToggleDriveClutch()
     {
         driveClutch = 1 - driveClutch;
     }
 
-    void ToggleAugerClutch()
+    public void ToggleAugerClutch()
     {
         augerClutch = 1f - augerClutch;
     }
@@ -163,6 +167,11 @@ public class SnowBlowerController : MonoBehaviour
     public float GetSpeed()
     {
         return currentSpeed;
+    }
+
+    public float GetTrueSpeed()
+    {
+        return currentSpeed * driveClutch * (2f - controlLeverL - controlLeverR) * .5f * (1f - Mathf.Clamp(snowResistance, 0f, maxSnowResistance));
     }
 
     public void SetSpeed(float value)
