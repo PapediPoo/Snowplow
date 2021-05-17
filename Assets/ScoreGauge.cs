@@ -23,6 +23,6 @@ public class ScoreGauge : MonoBehaviour
         float initSnow = sa.GetInitSnow();
 
         ProgressText.text = ((1f - curSnow / initSnow) * 100f).ToString("00") + "%";
-        TimeText.text = (Time.time / 60).ToString("00") + ":" + (Time.time % 60).ToString("00");
+        TimeText.text = Mathf.FloorToInt(Time.time / 60).ToString("00") + ":" + Mathf.FloorToInt(Time.time % 60).ToString("00");
     }
 }
