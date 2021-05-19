@@ -22,12 +22,12 @@ public class SnowBlowerController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]  private Vector3 centerOfMass = Vector3.zero;
-    public Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
     [Header("Driving Characteristics")]
     [SerializeField] private float track = 1f;          // Controls how far apart the tracks should be. Affects the turning radius
-    [SerializeField] public readonly float maxspeed = 3;        // Controls the maximum forward speed
-    [SerializeField] public readonly float reversespeed = -2f;  // Controls the maximum reverse speed
+    [SerializeField] public float maxspeed = 3;        // Controls the maximum forward speed
+    [SerializeField] public float reversespeed = -2f;  // Controls the maximum reverse speed
     [Range(0, 1)]
     public float lateralStiffness = 0.5f;               // Controls sideways stiffness
     [Range(0,1)]
@@ -66,14 +66,17 @@ public class SnowBlowerController : MonoBehaviour
     private float speedRef;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.centerOfMass = centerOfMass;
         currentSpeed = 0f;
         augerKernel = Utils.GaussianKernel(augerKernelSize, augerKernelWeight);
         chuteKernel = Utils.GaussianKernel(chuteKernelSize, chuteKernelWeight);
         master = FindObjectOfType<GameMaster>();
+        speedRef = 0f;
     }
 
     private void Update()
@@ -231,5 +234,14 @@ public class SnowBlowerController : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position - (groundedThreshold * transform.up));
 
 
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Exit")
+        {
+            print("entered exit area");
+            master.ChangeGameState("Score");
+        }
     }
 }

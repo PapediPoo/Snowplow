@@ -32,7 +32,7 @@ public class SnowArea : MonoBehaviour
     private float initSnow;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         Color col = new Color(initHeight, 0f, 0f);
         Color[] cols = new Color[resolution * resolution];
