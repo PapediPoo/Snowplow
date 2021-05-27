@@ -73,12 +73,12 @@ public class SnowArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        counter += Time.deltaTime;
-        if(counter >= updateScoreEvery)
-        {
-            counter -= updateScoreEvery;
-            print(GetRemainingSnow());
-        }
+        //counter += Time.deltaTime;
+        //if(counter >= updateScoreEvery)
+        //{
+        //    counter -= updateScoreEvery;
+        //    print(GetRemainingSnow());
+        //}
     }
 
     public float ClearArea(Vector3 position, float[,] kernel, float capacity, ClearingMode mode)
