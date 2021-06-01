@@ -89,10 +89,13 @@ public class SnowBlowerController : MonoBehaviour
 
         useKeyboard = !master.VRMode;
 
+
+        // Maps control variables to keyboard inputs if keyboard is used
         if (useKeyboard)
         {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, (Input.GetKey("w") ? maxspeed : 0f) + (Input.GetKey("s") ? reversespeed : 0f), ref speedRef, shiftTime);
 
+            // The use of lerping makes the controls a bit less jittery
             controlLeverL = Mathf.Lerp(controlLeverL, Input.GetKey("a") ? 1 : 0, controlSmoothing);
             controlLeverR = Mathf.Lerp(controlLeverR, Input.GetKey("d") ? 1 : 0, controlSmoothing);
 
@@ -105,9 +108,10 @@ public class SnowBlowerController : MonoBehaviour
     void FixedUpdate()
     {
 
-
+        // moves snowblower around
         Drive(driveClutch, controlLeverL, controlLeverR);
 
+        // Collects and throws snow
         if (currentSpeed >= 0f)
         {
             volume = Collect(augerTransform.position, augerKernel, clearingCapacity * augerClutch);
@@ -128,14 +132,23 @@ public class SnowBlowerController : MonoBehaviour
 
         if (Physics.Raycast(transform.position + (.1f * transform.up), -transform.up, groundedThreshold + .1f))
         {
+            // basic principle here is: add_velocity = desired_velocity - current_velocity
+            // since I use forces and not velocities, I multiply by mass and divide by timestep
+            // I dont use ForceMode.VelocityChange because a) I want the "strength" of the vehicle to depend on its mass and b) because it produces more jitter.
+            // Add forward & backward forces
             rb.AddForce(transform.forward * Mathf.Clamp(desiredSpeed - actualSpeed, reversespeed, maxspeed) * longitudinalStiffness * rb.mass / Time.fixedDeltaTime, ForceMode.Force);
+
+            // Add sidewise forces
             rb.AddForce(transform.right * (-Vector3.Dot(transform.right, rb.velocity)) * lateralStiffness * rb.mass / Time.fixedDeltaTime, ForceMode.Force);
+
+            // Add torque for steering
             rb.AddTorque(transform.up * Mathf.Clamp(desiredASpeed - actualASpeed, 2 * reversespeed, 2 * maxspeed) * turnStiffness / Time.fixedDeltaTime, ForceMode.Acceleration);
         }
     }
 
     float Collect(Vector3 position, float[,] kernel, float capacity)
     {
+        // return collected snow and adjust current snow resistance
         float v = snowArea.ClearArea(augerTransform.position, kernel, capacity * Time.deltaTime, ClearingMode.Subtract);
         snowResistance = Mathf.Lerp(snowResistance, v / Time.deltaTime / clearingCapacity, snowResistanceSmoother
             );
@@ -144,6 +157,7 @@ public class SnowBlowerController : MonoBehaviour
 
     public void Throw(Vector3 position, float[,] kernel, float amount)
     {
+        // add amount of snow to certain offset position
         snowArea.ClearArea(chuteTransform.position + chuteTransform.rotation * chuteTarget, kernel, amount * (1f - chuteLoss), ClearingMode.Add);
     }
 
@@ -169,11 +183,13 @@ public class SnowBlowerController : MonoBehaviour
 
     public float GetSpeed()
     {
+        // returns the hypothetical speed of the vehicle. This varies depending on snow resistance and current steering angle
         return currentSpeed;
     }
 
     public float GetTrueSpeed()
     {
+        // Returns the physical speed of the vehicle
         return currentSpeed * driveClutch * (2f - controlLeverL - controlLeverR) * .5f * (1f - Mathf.Clamp(snowResistance, 0f, maxSnowResistance));
     }
 

@@ -92,7 +92,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085407630948279063}
-  m_LocalRotation: {x: 0.00000000475326, y: 0.96108586, z: -0.27624992, w: 0.000000016536807}
+  m_LocalRotation: {x: 0.0000000047532622, y: 0.96108586, z: -0.27624992, w: 0.00000001653681}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -265,7 +265,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682889868466041398}
-  m_LocalRotation: {x: 2.1049585e-16, y: 0.9436284, z: -0.33100694, w: 7.383798e-17}
+  m_LocalRotation: {x: 4.341217e-16, y: 0.9436284, z: -0.33100694, w: 1.5228167e-16}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -422,7 +422,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2483268448467135418}
-  m_LocalRotation: {x: -0.0000000037485757, y: 0.95277953, z: -0.3036631, w: -0.000000011761608}
+  m_LocalRotation: {x: 0.0000000054242806, y: 0.95277953, z: -0.30366307, w: 0.000000017019335}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5803,7 +5803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4888279532204847804
 Transform:
   m_ObjectHideFlags: 0
@@ -5891,7 +5891,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -10616,7 +10616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4888279532840168622}
   m_LocalRotation: {x: 0.00000011920929, y: -0.49999923, z: -0.00000008940697, w: 0.8660259}
-  m_LocalPosition: {x: -0.00416, y: 0, z: 0.00714}
+  m_LocalPosition: {x: -0.00534, y: -0, z: 0.00836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4888279532204847804}

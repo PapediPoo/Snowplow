@@ -111,7 +111,7 @@ public class SnowArea : MonoBehaviour
                     tex.SetPixel(Mathf.RoundToInt(iPosition.x) - rad + x, Mathf.RoundToInt(iPosition.z) - rad + y, c);
 
                 }
-                catch (IndexOutOfRangeException e)
+                catch (IndexOutOfRangeException)
                 {
 
                 }
