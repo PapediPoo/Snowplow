@@ -27,6 +27,7 @@ Note that in the settings you can change between VR-mode and normal mode. This a
 
 ### Normal controls
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/normalmodecontrol.png width=300>
+
 * **Move mouse**: Look around
 * **W/S**: Move snowblower forwards/backwards
 * **A/D**: Turn snowblower left/right
