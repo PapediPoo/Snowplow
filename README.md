@@ -17,11 +17,12 @@ The build Windows version can be found [HERE](https://github.com/PapediPoo/Snowp
 ## How to play
 ### Goal of the game
 Your goal is to clean the parking lot of as much snow as fast as possible. Once you think you're done, drive out of the parking lot to see how well you did.
+You start with a score of 30 pts. and the more time passes, the more points are deducted from your score. You can increase your score by clearing snow. For each percentage of snow cleared on the parking lot you get 1 point.
 
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/explanationEXIT.png height=200> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/scorescreen.png height=200>
 
 
-Note that in the settings you can change between VR-mode and normal mode. This also changes the control scheme of the game. Simply toggle the setting in the options menu to switch between modes
+Note that in the settings you can change between VR-mode and normal mode. This also changes the control scheme of the game. Simply toggle the setting in the options menu to switch between modes.
 
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/optionsmenu.png width=300>
 
@@ -63,3 +64,12 @@ The auger and drive clutch buttons allow you to toggle the respective parts of t
 Note: The auger of a snowblower is the spinning drum at the front of the machine. Turning it off will disable snow throwing capabilities.
 
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/augerclutchVR.png height=150> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/driveclutchVR.png height=150>
+
+## Ingame UI
+The ingame UI is split into two sections
+
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationscore.png height=300> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationspeed.png height=300>
+
+On the left you can see the section which displays the current snow clearing progress, the current game time and the current score.
+
+On the left, you can see the current driving speed of the snowblower.
