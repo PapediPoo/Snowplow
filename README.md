@@ -18,7 +18,7 @@ The build Windows version can be found [HERE](https://github.com/PapediPoo/Snowp
 ### Goal of the game
 Your goal is to clean the parking lot of as much snow as fast as possible. Once you think you're done, drive out of the parking lot to see how well you did.
 
-<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/explanationEXIT.png height=200> <img
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/explanationEXIT.png height=200> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/scorescreen.png height=200>
 
 
 Note that in the settings you can change between VR-mode and normal mode. This also changes the control scheme of the game. Simply toggle the setting in the options menu to switch between modes
