@@ -20,6 +20,7 @@ Note that in the settings you can change between VR-mode and normal mode. This a
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/optionsmenu.png width=300>
 
 ### Normal controls
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/normalmodecontrol.png width=300>
 * **Move mouse**: Look around
 * **W/S**: Move snowblower forwards/backwards
 * **A/D**: Turn snowblower left/right
@@ -28,6 +29,7 @@ Note that in the settings you can change between VR-mode and normal mode. This a
 * **Esc**: Back to menu
 
 ### VR-mode controls
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/snowplowVRbuttons.png width=300>
 We use the standard control scheme for Unity's XR Device Simulator
 * **Left mouse button**:  Interact
 * **Right mouse button**: Move camera
@@ -40,6 +42,12 @@ We use the standard control scheme for Unity's XR Device Simulator
 
 If you are in VR-mode, you can interact with the dashboard of the snowblower. This is also how you can control the machine. There are a total of **6 buttons** that you can interact with.
 
-<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/snowplowVRbuttons.png width=300>
+**Grabbing and interacting** with speed up/speed down buttons allows you to change the driving speed of the snowblower.
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/speeddownVR.png height=150>  <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/speedupVR.png height=150>
 
-The speed up/speed down buttons allow you to change the driving speed of the snowblower.
+The left and right control handles allow you to turn left and right. This only works if you are actually moving.
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/LRcontrolVR.png height=150>
+
+The auger and drive clutch buttons allow you to toggle the respective parts of the snowblower
+Note: The auger of a snowblower is the spinning drum at the front of the machine. Turning it off will disable snow throwing capabilities.
+<img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/augerclutchVR.png height=150> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/driveclutchVR.png height=150>
