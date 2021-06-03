@@ -12,7 +12,7 @@ So although this project was build for for VR systems, you can't actually play i
 
 ## Downloading and starting the game
 In this repo you will find the project files as well as a built version of the project
-The build Windows version can be found [HERE](https://github.com/PapediPoo/Snowplow/tree/master/Build)
+The build Windows version can be found [HERE](https://github.com/PapediPoo/Snowplow/tree/master/Build.zip)
 
 ## How to play
 ### Goal of the game
