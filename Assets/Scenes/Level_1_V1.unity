@@ -19936,7 +19936,6 @@ MonoBehaviour:
   noiseHeight: 0.3
   distanceClearThreshold: 1
   displacementTextureID: Texture2D_D3560758
-  updateScoreEvery: 2
 --- !u!4 &979378928459142732
 Transform:
   m_ObjectHideFlags: 0
