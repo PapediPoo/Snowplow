@@ -6,13 +6,16 @@ Created by Pascal, Julien and Robin a semester project for the class "Visualizat
 ## What is it about?
 In this game it is your job to clear a parking lot of as much snow as fast as possible. Both speed and cleanliness are important for getting a good score. So get to work!
 
+[Check out our explanation video on Youtube](https://www.youtube.com/watch?v=mbYS2db9zBg)
+
 ## Important
 Since we did not have access to VR-hardware (HMD and hand trackers), we had to try and EMULATE the VR experience. 
 So although this project was build for for VR systems, you can't actually play it using a VR headset, but use Mouse and Keyboard instead.
 
 ## Downloading and starting the game
-In this repo you will find the project files as well as a built version of the project
-The build Windows version can be found [HERE](https://github.com/PapediPoo/Snowplow/tree/master/Build)
+In this repo you will find the project files as well as a built version of the project.
+
+The built Windows version can be found [HERE](https://github.com/PapediPoo/Snowplow/tree/master/Build.zip)
 
 ## How to play
 ### Goal of the game
@@ -70,6 +73,6 @@ The ingame UI is split into two sections
 
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationscore.png height=300> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationspeed.png height=300>
 
-On the left you can see the section which displays the current snow clearing progress, the current game time and the current score.
+At the top you can see the section which displays the current snow clearing progress, the current game time and the current score.
 
-On the left, you can see the current driving speed of the snowblower.
+At the the bottom, you can see the current driving speed of the snowblower.
