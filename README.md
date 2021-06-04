@@ -70,6 +70,6 @@ The ingame UI is split into two sections
 
 <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationscore.png height=300> <img src=https://github.com/PapediPoo/Snowplow/blob/master/Images/UIexplanationspeed.png height=300>
 
-On the left you can see the section which displays the current snow clearing progress, the current game time and the current score.
+At the top you can see the section which displays the current snow clearing progress, the current game time and the current score.
 
-On the left, you can see the current driving speed of the snowblower.
+At the the bottom, you can see the current driving speed of the snowblower.
