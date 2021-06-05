@@ -12,6 +12,9 @@ In this game it is your job to clear a parking lot of as much snow as fast as po
 Since we did not have access to VR-hardware (HMD and hand trackers), we had to try and EMULATE the VR experience. 
 So although this project was build for for VR systems, you can't actually play it using a VR headset, but use Mouse and Keyboard instead.
 
+## PSA
+You can find it [HERE](https://github.com/PapediPoo/Snowplow/blob/master/Project%20Submission%20Agreement%202021.pdf)
+
 ## Downloading and starting the game
 In this repo you will find the project files as well as a built version of the project.
 
